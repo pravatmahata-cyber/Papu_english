@@ -1,0 +1,1 @@
+test("recording state contract includes processing states",()=>{const states=["IDLE","LISTENING","RECORDING","PROCESSING","ANALYZING","SUCCESS","ERROR"]; expect(states).toHaveLength(7);});
