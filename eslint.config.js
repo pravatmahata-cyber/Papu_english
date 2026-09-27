@@ -1,0 +1,1 @@
+const globals=require("globals"); module.exports=[{files:["**/*.{js,ts,tsx}"],languageOptions:{globals:{...globals.node,...globals.es2021}},rules:{}}];
