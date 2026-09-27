@@ -1,0 +1,3 @@
+import { Link } from "expo-router"; import { StyleSheet, Text, View } from "react-native";
+export default function Home(){return <View style={s.c}><Text style={s.h}>Welcome to Papu English</Text><Text>Build confidence through daily speaking practice.</Text><Link href="/practice" style={s.cta}>Speak Now</Link><Link href="/learn">Learn</Link><Link href="/progress">Progress</Link><Link href="/profile">Profile</Link></View>}
+const s=StyleSheet.create({c:{flex:1,padding:24,justifyContent:"center",gap:18},h:{fontSize:28,fontWeight:"800"},cta:{padding:18,borderRadius:16,backgroundColor:"#111",color:"#fff",textAlign:"center",fontWeight:"700"}});
