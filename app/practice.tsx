@@ -1,0 +1,2 @@
+import { useState } from "react"; import { Button, Text, View } from "react-native";
+export default function Practice(){const [recording,setRecording]=useState(false); return <View style={{flex:1,justifyContent:"center",alignItems:"center",padding:24,gap:20}}><Text style={{fontSize:28,fontWeight:"800"}}>Speak Now</Text><Text>{recording?"Recording…":"Tap to practice a sentence."}</Text><Button title={recording?"Stop":"Start Recording"} onPress={()=>setRecording(v=>!v)}/><Text>Real speech analysis will be connected through a server-side provider.</Text></View>}
