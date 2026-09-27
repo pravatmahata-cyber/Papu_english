@@ -1,0 +1,1 @@
+import { Text, View } from "react-native"; export default function Learn(){return <View style={{flex:1,padding:24,justifyContent:"center"}}><Text style={{fontSize:28,fontWeight:"800"}}>Learn</Text><Text>Personalized courses and lessons will appear here.</Text></View>}
