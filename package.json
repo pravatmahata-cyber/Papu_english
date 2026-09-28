@@ -8,7 +8,7 @@
     "android": "expo run:android",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "test": "jest --runInBand --preset=jest-expo"
+    "test": "jest --runInBand"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.0",
@@ -31,7 +31,6 @@
     "jest": "^30.1.3",
     "typescript": "~5.9.2",
     "globals": "^16.4.0",
-    "@typescript-eslint/parser": "^8.44.0",
-    "jest-expo": "~57.0.0"
+    "@typescript-eslint/parser": "^8.44.0"
   }
 }
