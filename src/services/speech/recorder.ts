@@ -1,23 +1,18 @@
-import { Audio } from "expo-av";
+import { AudioRecorder, RecordingPresets } from "expo-audio";
 
-export type RecordingHandle = {
-  recording: Audio.Recording;
-  uri: string | null;
-};
+export type RecordingHandle = AudioRecorder;
 
-export async function startRecording(): Promise<Audio.Recording> {
-  const permission = await Audio.requestPermissionsAsync();
-  if (!permission.granted) throw new Error("Microphone permission was denied.");
-  await Audio.setAudioModeAsync({ allowsRecordingIOS: true, playsInSilentModeIOS: true });
-  const recording = new Audio.Recording();
-  await recording.prepareToRecordAsync(Audio.RecordingOptionsPresets.HIGH_QUALITY);
-  await recording.startAsync();
-  return recording;
+export async function prepareRecording(recorder: RecordingHandle): Promise<void> {
+  await recorder.prepareToRecordAsync({
+    ...RecordingPresets.HIGH_QUALITY,
+    directory: "document",
+  });
+  recorder.record();
 }
 
-export async function stopRecording(recording: Audio.Recording): Promise<string> {
-  await recording.stopAndUnloadAsync();
-  const uri = recording.getURI();
+export async function stopRecording(recorder: RecordingHandle): Promise<string> {
+  await recorder.stop();
+  const uri = recorder.uri;
   if (!uri) throw new Error("Recording finished without an audio file.");
   return uri;
 }
