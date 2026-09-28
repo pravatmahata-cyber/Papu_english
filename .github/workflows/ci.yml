@@ -28,15 +28,26 @@ jobs:
       - run: test -f android/app/build/outputs/apk/debug/app-debug.apk
       - run: test -f android/app/build/outputs/apk/release/app-release.apk
       - run: test -f android/app/build/outputs/bundle/release/app-release.aab
-      - run: unzip -l android/app/build/outputs/apk/debug/app-debug.apk | grep -q 'lib/arm64-v8a/'
-      - run: unzip -l android/app/build/outputs/apk/release/app-release.apk | grep -q 'lib/arm64-v8a/'
-      - name: Upload Android APK and AAB artifacts
+      - name: Verify ARM64 support
+        run: |
+          unzip -l android/app/build/outputs/apk/debug/app-debug.apk | grep -q 'lib/arm64-v8a/'
+          unzip -l android/app/build/outputs/apk/release/app-release.apk | grep -q 'lib/arm64-v8a/'
+      - name: Verify release JavaScript bundle
+        run: |
+          unzip -l android/app/build/outputs/apk/release/app-release.apk | grep -q 'assets/index.android.bundle'
+      - name: Upload release APK and AAB
         uses: actions/upload-artifact@v4
         with:
-          name: papu-english-android
+          name: papu-english-release
           path: |
-            android/app/build/outputs/apk/debug/app-debug.apk
             android/app/build/outputs/apk/release/app-release.apk
             android/app/build/outputs/bundle/release/app-release.aab
+          if-no-files-found: error
+          retention-days: 30
+      - name: Upload debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: papu-english-debug
+          path: android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
