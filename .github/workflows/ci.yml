@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
-        with: {node-version: 22, cache: npm}
+        with: {node-version: 22}
       - run: npm install
       - run: npm run typecheck
       - run: npm run lint
@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
-        with: {node-version: 22, cache: npm}
+        with: {node-version: 22}
       - run: npm install
       - run: npx expo prebuild --platform android --no-install
       - run: cd android && ./gradlew :app:assembleDebug :app:assembleRelease :app:bundleRelease --no-daemon
